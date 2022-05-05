@@ -1,0 +1,16 @@
+version: '3.5'
+
+networks:
+        inception:
+                name: inception
+
+services:
+        nginx:
+                build: requirements/nginx
+                image: nginx
+                container_name: nginx
+                restart: unless-stopped
+                networks:
+                        - inception
+                ports:
+                        - 80:80
