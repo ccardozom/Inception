@@ -4,6 +4,18 @@ networks:
         inception:
                 name: inception
 
+volumes:
+        db:
+                driver_opts:
+                        type: none
+                        o: bind
+                        device: /home/carlos/data/mariadb
+        wp:
+                driver_opts:
+                        type: none
+                        o: bind
+                        device: /home/carlos/data/wordpress
+
 services:
         nginx:
                 build: requirements/nginx
@@ -25,7 +37,7 @@ services:
                 networks:
                         - inception
                 volumes:
-                        - db:/var/lib/mariadb
+                        - db:/var/lib/mysql
                 
 
         wordpress:
@@ -39,18 +51,9 @@ services:
                         - mariadb
                 volumes:
                         - wp:/var/www/html
+                env_file:
+                        - .env
                
-volumes:
-        db:
-                driver_opts:
-                        type: none
-                        o: bind
-                        device: /home/carlos/data/mariadb
-        wp:
-                driver_opts:
-                        type: none
-                        o: bind
-                        device: /home/carlos/data/wordpress
-env_file:
-        - .env
+
+
 
