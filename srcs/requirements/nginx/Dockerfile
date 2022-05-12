@@ -9,5 +9,6 @@ RUN openssl req -newkey rsa:4096 \
 	-subj "/C=ES/ST=Madrid/L=Madrid/O=42_Madrid/CN=ccardozo.42.fr" 
 
 COPY /conf/sample.conf /etc/nginx/sites-enabled/
+COPY /index.html /var/www/html/
 
 CMD ["nginx", "-g", "daemon off;"]
