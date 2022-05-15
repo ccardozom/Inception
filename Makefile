@@ -9,6 +9,15 @@ build:
 logs:
 	docker-compose -f $(COMPOSE) logs
 
+nginxexec:
+	docker exec -it nginx /bin/bash
+
+mariadbexec:
+	docker exec -it mariadb /bin/bash
+
+wpexec:
+	docker exec -it wordpress /bin/bash
+
 clean:
 	docker-compose -f $(COMPOSE) down
 	docker system prune -f
