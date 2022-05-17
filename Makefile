@@ -18,6 +18,9 @@ mariadbexec:
 wpexec:
 	docker exec -it wordpress /bin/bash
 
+rebuild:
+	docker-compose -f $(COMPOSE) up --detach --build
+
 clean:
 	docker-compose -f $(COMPOSE) down
 	docker system prune -f
