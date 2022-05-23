@@ -23,7 +23,8 @@ rebuild:
 
 clean:
 	docker-compose -f $(COMPOSE) down
-	docker system prune -f
+	docker system prune -fa
+
 
 fclean: clean
 	docker rm $$(docker ps -qa);\
