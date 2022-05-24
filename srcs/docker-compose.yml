@@ -32,20 +32,21 @@ services:
                         - wp:/var/www/wordpress
 
         mariadb:
-                build: requirements/mariadb
-                image: mariadb
                 container_name: mariadb
+                image: mariadb
+                build: requirements/mariadb
                 restart: unless-stopped
                 networks:
                         - inception
                 volumes:
                         - db:/var/lib/mysql
+                env_file:
+                        - .env
                 
-
         wordpress:
-                build: requirements/wordpress
-                image: wordpress
                 container_name: wordpress
+                image: wordpress
+                build: requirements/wordpress
                 restart: unless-stopped
                 networks:
                         - inception

@@ -25,6 +25,10 @@ clean:
 	docker-compose -f $(COMPOSE) down
 	docker system prune -fa
 
+cleanvolumes:
+	sudo rm -rf /home/carlos/data/mariadb/*
+	sudo rm -rf /home/carlos/data/wordpress/*
+
 
 fclean: clean
 	docker rm $$(docker ps -qa);\
