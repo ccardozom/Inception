@@ -36,6 +36,6 @@ fclean: clean
 	docker network rm inception;\
 	docker volume rm $$(docker volume ls -q)
 
-re: clean all
+re: fclean all
 
 .PHONY: all logs clean re
