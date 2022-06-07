@@ -9,12 +9,12 @@ volumes:
                 driver_opts:
                         type: none
                         o: bind
-                        device: /home/carlos/data/mariadb
+                        device: /home/ccardozo/data/mariadb
         wp:
                 driver_opts:
                         type: none
                         o: bind
-                        device: /home/carlos/data/wordpress
+                        device: /home/ccardozo/data/wordpress
 
 services:
         nginx:
@@ -34,14 +34,20 @@ services:
         mariadb:
                 container_name: mariadb
                 image: mariadb
-                build: requirements/mariadb
+                build: 
+                        context: requirements/mariadb
+                        args:
+                                DB_NAME: ${DB_NAME}
+                                DB_LOGIN: ${DB_LOGIN}
+                                DB_PASS: ${DB_PASS}
+                                DB_ROOT_LOGIN: ${DB_ROOT_LOGIN}
+                                DB_ROOT_PASS: ${DB_ROOT_PASS}
                 restart: unless-stopped
                 networks:
                         - inception
                 volumes:
                         - db:/var/lib/mysql
-                env_file:
-                        - .env
+
                 
         wordpress:
                 container_name: wordpress

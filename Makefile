@@ -1,10 +1,10 @@
 COMPOSE = ./srcs/docker-compose.yml
 
 all:
-	docker-compose -f $(COMPOSE) up -d
+	docker-compose -f $(COMPOSE) --env-file srcs/.env up -d
 
 build:
-	docker-compose -f $(COMPOSE) up --build
+	docker-compose -f $(COMPOSE) up -build
 
 logs:
 	docker-compose -f $(COMPOSE) logs
@@ -26,8 +26,8 @@ clean:
 	docker system prune -fa
 
 cleanvolumes:
-	sudo rm -rf /home/carlos/data/mariadb/*
-	sudo rm -rf /home/carlos/data/wordpress/*
+	sudo rm -rf /home/ccardozo/data/mariadb/*
+	sudo rm -rf /home/ccardozo/data/wordpress/*
 
 
 fclean: clean
